@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:app="http://localhost:8088/ImportUser" xmlns:msg="http://localhost:8088/MsgHeader" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://localhost:8088/ImportUser">
+    <import namespace="http://localhost:8088/MsgHeader" schemaLocation="MsgHeader.xsd"/>
+    <element name="ImportUserRequest" type="app:ImportUserRequest" />
+    <complexType name="ImportUserRequest">
+        <sequence>
+            <element name="MsgHeader" type="msg:MsgHeader"/>
+            <element name="ImportUserInputCollection" type="app:ImportUserInputCollection"/>
+        </sequence>
+    </complexType>
+    <complexType name="ImportUserInputCollection">
+        <sequence>
+            <element maxOccurs="unbounded" minOccurs="0" name="ImportUserInputItem" type="app:ImportUserInputItem"/>
+        </sequence>
+    </complexType>
+    <complexType name="ImportUserInputItem">
+        <sequence>
+            <element name="PRI_KEY" nillable="true" type="string"/>
+            <element name="BATCH_ID" nillable="true" type="string"/>
+            <element name="HEADER_ID" nillable="true" type="string"/>
+            <element name="COMMANDTYPE" nillable="true" type="decimal"/>
+            <element name="MDM_EMP_CODE" nillable="true" type="string"/>
+            <element name="HR_EMP_CODE" nillable="true" type="string"/>
+            <element name="CUNC_PERSON_TYPE" nillable="true" type="string"/>
+            <element name="EMP_CODE" nillable="true" type="string"/>
+            <element name="EMP_NAME" nillable="true" type="string"/>
+            <element name="FIRST_NAME" nillable="true" type="string"/>
+            <element name="LAST_NAME" nillable="true" type="string"/>
+            <element name="SEX" nillable="true" type="string"/>
+            <element name="DATE_OF_BIRTH" nillable="true" type="dateTime"/>
+        </sequence>
+    </complexType>
+    
+    <element name="ImportUserResponse">
+        <complexType>
+            <sequence>
+                <element name="SERVICE_FLAG" nillable="true" type="string"/>
+                <element name="SERVICE_MESSAGE" nillable="true" type="string"/>
+                <element name="INSTANCE_ID" nillable="true" type="decimal"/>
+                <element name="ResponseCollection" type="app:ResponseOutputCollection"/>
+            </sequence>
+        </complexType>
+    </element>
+    <complexType name="ResponseOutputCollection">
+        <sequence>
+            <element maxOccurs="unbounded" minOccurs="0" name="ResponseOutputItem" type="app:ResponseOutputItem"/>
+        </sequence>
+    </complexType>
+    <complexType name="ResponseOutputItem">
+        <sequence>
+            <element name="FLAG" nillable="true" type="string"/>
+            <element name="PRI_KEY" nillable="true" type="string"/>
+            <element name="MDM_EMP_CODE" nillable="true" type="string"/>
+            <element name="BATCH_ID" nillable="true" type="string"/>
+            <element name="ERROR_MESSAGE" nillable="true" type="string"/>
+            <element name="ERP_ID" nillable="true" type="string"/>
+        </sequence>
+    </complexType>
+</schema>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="ImportUser" targetNamespace="http://localhost:8088/ImportUser" xmlns:tns="http://mss.unicom.com/ImportUser" xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:client="http://localhost:8088/ImportUser" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://localhost:8088/ImportUser" schemaLocation="ImportUserSchema.xsd"/>
+		</schema>
+  </types>
+  <message name="ImportUserResponseMessage">
+    <part name="payload" element="tns:ImportUserResponse">
+    </part>
+  </message>
+  <message name="ImportUserRequestMessage">
+    <part name="payload" element="tns:ImportUserRequest">
+    </part>
+  </message>
+  <portType name="ImportUser">
+    <operation name="process">
+      <input message="tns:ImportUserRequestMessage">
+    </input>
+      <output message="tns:ImportUserResponseMessage">
+    </output>
+    </operation>
+  </portType>
+  <binding name="ImportUserBinding" type="tns:ImportUser">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="process">
+      <soap:operation soapAction="process" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="ImportUser">
+    <port name="ImportUserPort" binding="tns:ImportUserBinding">
+    	<soap:address location="http://localhost:8088/ws/services/ImportUser"/>
+    	
+    </port>
+  </service>
+    <plnk:partnerLinkType name="ImportUser">
+		<plnk:role name="ImportUserProvider">
+			<plnk:portType name="tns:ImportUser"/>
+		</plnk:role>
+	</plnk:partnerLinkType>
+</definitions>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+xmlns:tns="http://localhost:8088/MsgHeader" 
+attributeFormDefault="qualified" 
+elementFormDefault="qualified" 
+targetNamespace="http://localhost:8088/MsgHeader">
+    <complexType name="MsgHeader">
+        <sequence>
+            <element name="systemId" nillable="true" type="string"/>
+        </sequence>
+    </complexType>
+</schema>

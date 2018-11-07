@@ -1,0 +1,48 @@
+buildscript {
+    repositories {
+        maven{url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+        
+        maven {
+            url 'https://repo.spring.io/libs-snapshot'
+        }
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.10.RELEASE")
+    }
+}
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'org.springframework.boot'
+
+sourceCompatibility = 1.8 // 设置 JDK 版本
+targetCompatibility = 1.8   // 设置 JDK 版本
+[compileJava,compileTestJava,javadoc]*.options*.encoding = "UTF-8"
+javadoc {
+    options.charSet = 'UTF-8'
+}
+jar {
+    baseName = 'ws'
+    version =  ''
+}
+
+
+repositories {
+    maven{url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+    jcenter()
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-web-services")
+    compile("wsdl4j:wsdl4j:1.6.3")
+	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.6'
+	compile group: 'commons-codec', name: 'commons-codec', version: '1.10'
+	compile group: 'org.apache.ws.xmlschema', name: 'xmlschema-core', version: '2.2.3'
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+}
+bootRun {
+    addResources = true
+}
